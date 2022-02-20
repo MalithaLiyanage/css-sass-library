@@ -1,0 +1,35 @@
+@mixin text-field($bg-color: #e2e2e2) {
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: $base-padding $base-padding * 2;
+    border-radius: $base-border-radius * 0.5;
+    background-color: $bg-color;
+    
+}
+// e2e2e2 is the default color
+
+.text-field {
+    @include text-field;
+}
+
+@each $key, $val in $colors {
+    .text-field-#{$key} {
+        @include text-field($val);
+        border: 0;
+        &:hover {
+            background-color: lighten($val, 5)
+        }
+    }
+    .text-field-outlined-#{$key} {
+        @include text-field(#fff);
+        border:$base-border-thickness solid $val;
+    }
+    .text-field-complement-#{$key} {
+        @include text-field($val);
+        border: 0;
+        &:focus {
+            background-color: white;
+        }
+    }
+}
